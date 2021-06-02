@@ -1,0 +1,43 @@
+  
+# This is a basic workflow to help you get started with Actions
+
+name: build latex pdf
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: [windows-latest]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - run: dir
+      
+      - name: Run a powershell script
+        run: .\build.ps1
+        shell: powershell
+
+      - name: Upload index.pdf
+        uses: actions/upload-artifact@v2
+        with:
+          name: index.pdf
+          path: index.pdf
+
+      - name: Upload sample.pdf
+        uses: actions/upload-artifact@v2
+        with:
+          name: sample.pdf
+          path: sample.pdf

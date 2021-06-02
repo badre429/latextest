@@ -1,0 +1,11 @@
+ 
+install-tl.zip
+install-tl
+texlive
+*.log
+
+*.aux
+*.fdb_latexmk
+*.fls
+*.pdf
+*.gz
